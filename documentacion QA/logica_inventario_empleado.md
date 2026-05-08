@@ -1,7 +1,5 @@
-**Vista:** `views/empleado/inventario.php`
-**Controlador:** Solo lectura
+**Vista:** `views/empleado/inventario.php`  
+**Controlador:** Solo lectura  
 **Modelo:** `models/Producto.php`
 
-1. Empleado tiene acceso de solo lectura al inventario. Vista muestra tabla de productos con: nombre, talla, color, stock, stock_minimo, precio_venta, estado.
-2. No tiene botones de crear, editar o eliminar productos. Solo puede ver información y alertas de stock crítico.
-3. Puede usar filtros de búsqueda para encontrar productos. Útil para verificar disponibilidad antes de realizar ventas.
+Tabla renderizada con foreach de `$productos`. Empleado tiene acceso solo lectura. Vista muestra: nombre, talla, color, stock, stock_minimo, precio_venta, estado. NO tiene botones crear, editar o eliminar. Puede usar filtros de búsqueda para encontrar productos. Útil para verificar disponibilidad antes de ventas.

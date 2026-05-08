@@ -1,11 +1,7 @@
-**Vista:** `views/admin/productos.php`
-**Controlador:** `controllers/admin/ProductoController.php` → acción `crear`
+**Vista:** `views/admin/productos.php`  
+**Controlador:** `controllers/admin/ProductoController.php` → acción `crear`  
 **Modelo:** `models/Producto.php`
 
-1. Controlador verifica sesión y if ((int)$_SESSION['user_rol'] !== 1) retorna error (solo admin puede crear).
-2. Click en "Nuevo producto" abre modal con formulario. Obtiene datos con trim() y cast: nombre, descripcion, precio_venta (float), precio_compra (float), stock (int), stock_minimo (int), talla, color, estado, id_categoria (int).
-3. Valida if (!$d['nombre'] || !$d['talla'] || !$d['color'] || !$d['id_categoria']) retorna error "Completa todos los campos obligatorios".
-4. Valida if ($d['precio_venta'] <= $d['precio_compra']) retorna error "El precio de venta debe ser mayor al precio de compra".
-5. Llama `crear($d)` del modelo. Retorna JSON con ok y mensaje según resultado.
-6. Modelo `crear()` hace prepare() de INSERT en tabla productos con todos los campos. Usa foreach para hacer bindValue() de cada campo del array. Ejecuta con execute() y retorna boolean.
-7. Fetch recibe JSON: if (d.ok) muestra toast success y recarga tabla automáticamente sin recargar página completa.
+Tabla renderizada con foreach de `$productos` obtenidos con query LEFT JOIN categoria. Cada fila tiene atributos: `data-search`, `data-cat`, `data-estado`, `data-stock`. Tres filtros: input búsqueda, select categoría, select estado. Función `filterTable()` itera filas y oculta las que no coinciden evaluando múltiples condiciones. NO usa DataTables, filtrado manual JavaScript. NO hay paginación.
+
+Click "Nuevo producto" abre modal. Submit ejecuta fetch POST con action=crear. Controlador verifica rol admin, valida campos obligatorios y que precio_venta > precio_compra. Llama `crear()` que hace INSERT usando foreach para bindValue. Retorna JSON. JavaScript muestra toast y ejecuta `location.reload()` recargando página completa.
