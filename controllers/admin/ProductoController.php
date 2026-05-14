@@ -9,10 +9,12 @@ if (!isset($_SESSION['user_id']) || !in_array((int)$_SESSION['user_rol'], [1, 2]
 require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../../models/Producto.php';
 require_once __DIR__ . '/../../models/Categoria.php';
+require_once __DIR__ . '/../../models/Inventario.php';
 
 $action = $_POST['action'] ?? $_GET['action'] ?? '';
 $db     = (new Database())->conectar();
 $prod   = new Producto($db);
+$invM   = new Inventario($db);
 
 switch ($action) {
 
@@ -52,8 +54,13 @@ switch ($action) {
             echo json_encode(['ok' => false, 'msg' => 'El precio de venta debe ser mayor al precio de compra']);
             exit;
         }
-        $ok = $prod->crear($d);
-        echo json_encode(['ok' => $ok, 'msg' => $ok ? 'Producto creado correctamente' : 'Error al crear el producto']);
+        $id_insertado = $prod->crear($d);
+        if ($id_insertado) {
+            $invM->registrarMovimiento($id_insertado, 'Entrada', $d['stock']);
+            echo json_encode(['ok' => true, 'msg' => 'Producto creado correctamente']);
+        } else {
+            echo json_encode(['ok' => false, 'msg' => 'Error al crear el producto']);
+        }
         exit;
 
     case 'editar':
@@ -82,7 +89,19 @@ switch ($action) {
             echo json_encode(['ok' => false, 'msg' => 'El precio de venta debe ser mayor al precio de compra']);
             exit;
         }
+        $old = $prod->obtener($id);
+        $diff = $d['stock'] - $old['stock'];
+
         $ok = $prod->actualizar($id, $d);
+        if ($ok && $diff !== 0) {
+            $tipo = $diff > 0 ? 'Entrada' : 'Salida'; 
+            try {
+                $invM->registrarMovimiento($id, $tipo, $d['stock']);
+            } catch (Exception $e) {
+                // Ignore or log error
+            }
+        }
+
         echo json_encode(['ok' => $ok, 'msg' => $ok ? 'Producto actualizado' : 'Error al actualizar']);
         exit;
 

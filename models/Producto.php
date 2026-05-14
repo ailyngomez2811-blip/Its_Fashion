@@ -50,7 +50,11 @@ class Producto
         $stmt = $this->conn->prepare($sql);
         foreach (['nombre', 'descripcion', 'precio_venta', 'precio_compra', 'stock', 'stock_minimo', 'talla', 'color', 'estado', 'id_categoria'] as $k)
             $stmt->bindValue(':' . $k, $d[$k]);
-        return $stmt->execute();
+
+        if ($stmt->execute()) {
+            return $this->conn->lastInsertId();
+        }
+        return false;
     }
 
     public function actualizar($id, $d)

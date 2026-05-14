@@ -523,10 +523,6 @@ unset($_SESSION['toast']);
                 document.getElementById('f-telefono').value = data.telefono || '';
                 document.getElementById('f-estado').value = data.estado;
                 document.getElementById('pw-required').style.display = 'none';
-                if (data.caja) {
-                    document.getElementById('caja-toggle').className = 'toggle on';
-                    document.getElementById('f-caja').value = '1';
-                }
             }
         }
 
@@ -537,18 +533,9 @@ unset($_SESSION['toast']);
         function clearForm() {
             ['f-nombre', 'f-apellido', 'f-username', 'f-email', 'f-telefono', 'f-password'].forEach(id => document.getElementById(id).value = '');
             document.getElementById('f-estado').value = 'Activo';
-            document.getElementById('f-caja').value = '0';
-            document.getElementById('caja-toggle').className = 'toggle off';
             document.getElementById('pw-required').style.display = '';
             document.querySelectorAll('.err').forEach(e => e.classList.add('hidden'));
             ['s1', 's2', 's3', 's4'].forEach(id => document.getElementById(id).style.background = '#e2e8f0');
-        }
-
-        function toggleCaja() {
-            const t = document.getElementById('caja-toggle');
-            const on = t.classList.contains('on');
-            t.className = 'toggle ' + (on ? 'off' : 'on');
-            document.getElementById('f-caja').value = on ? '0' : '1';
         }
 
         document.getElementById('toggle-pw').addEventListener('click', function() {

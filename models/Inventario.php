@@ -14,9 +14,9 @@ class Inventario {
                 VALUES (NOW(), :stock, :tipo, :id_producto)";
         
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':stock', $stock_abastecido_final, PDO::PARAM_INT);
-        $stmt->bindParam(':tipo', $tipo_movimiento, PDO::PARAM_STR);
-        $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+        $stmt->bindValue(':stock', $stock_abastecido_final, PDO::PARAM_INT);
+        $stmt->bindValue(':tipo', $tipo_movimiento, PDO::PARAM_STR);
+        $stmt->bindValue(':id_producto', $id_producto, PDO::PARAM_INT);
         return $stmt->execute();
     }
 
