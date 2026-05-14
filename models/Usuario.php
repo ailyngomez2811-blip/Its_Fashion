@@ -56,11 +56,12 @@ class Usuario
     {
         $query = "SELECT id_usuario, nombre, apellido, username, email, password, id_rol, estado 
                   FROM " . $this->table_name . " 
-                  WHERE (username = :identifier OR email = :identifier) AND estado = 'Activo'
+                  WHERE (username = :u OR email = :e) AND estado = 'Activo'
                   LIMIT 1";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':identifier', $username_or_email);
+        $stmt->bindParam(':u', $username_or_email);
+        $stmt->bindParam(':e', $username_or_email);
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
