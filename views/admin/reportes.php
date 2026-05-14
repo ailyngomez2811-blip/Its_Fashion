@@ -764,16 +764,19 @@ $kpi_compras = $stmt8->fetch(PDO::FETCH_ASSOC);
     });
 
     function exportar(fmt) {
+      const checkboxes = document.querySelectorAll('.report-cb:checked');
+      let params = [];
+      checkboxes.forEach(cb => {
+        params.push(encodeURIComponent(cb.value) + '=1');
+      });
+      const queryString = params.length > 0 ? '?' + params.join('&') : '';
+
       if (fmt === 'PDF') {
-        const checkboxes = document.querySelectorAll('.report-cb:checked');
-        let params = [];
-        checkboxes.forEach(cb => {
-          params.push(encodeURIComponent(cb.value) + '=1');
-        });
-        
-        const queryString = params.length > 0 ? '?' + params.join('&') : '';
         window.open(`../../controllers/admin/ExportarPDFController.php${queryString}`, '_blank');
         showToast('Generando PDF...');
+      } else if (fmt === 'Excel') {
+        window.open(`../../controllers/admin/ExportarExcelController.php${queryString}`, '_blank');
+        showToast('Generando Excel...');
       } else {
         showToast(`Reporte exportado en formato ${fmt}.`);
       }
