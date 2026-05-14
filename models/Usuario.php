@@ -27,7 +27,7 @@ class Usuario
             $stmt->bindParam(':id', $id_excluir, PDO::PARAM_INT);
         }
         $stmt->execute();
-        
+
         return $stmt->rowCount() > 0;
     }
 
@@ -118,7 +118,7 @@ class Usuario
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':p', $hash);
         $stmt->bindParam(':t', $token);
-        
+
         return $stmt->execute() && $stmt->rowCount() > 0;
     }
 }

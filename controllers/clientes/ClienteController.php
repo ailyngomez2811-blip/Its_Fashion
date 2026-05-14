@@ -87,11 +87,12 @@ switch ($action) {
         $apellido = trim($_POST['apellido'] ?? '');
         $telefono = trim($_POST['telefono'] ?? '');
         $email    = trim($_POST['email']    ?? '');
-        $pw_actual= $_POST['password_actual'] ?? '';
+        $pw_actual = $_POST['password_actual'] ?? '';
         $pw_nueva = $_POST['password_nueva']  ?? '';
 
         if (!$nombre || !$apellido || !$telefono || !$email) {
-            echo json_encode(['ok'=>false,'msg'=>'Completa todos los campos obligatorios']); exit;
+            echo json_encode(['ok' => false, 'msg' => 'Completa todos los campos obligatorios']);
+            exit;
         }
 
         // Verificar que el email no lo use otro usuario
@@ -100,23 +101,27 @@ switch ($action) {
         );
         $stmt->execute([':e' => $email, ':id' => $_SESSION['user_id']]);
         if ($stmt->rowCount() > 0) {
-            echo json_encode(['ok'=>false,'msg'=>'Ese correo ya está registrado por otro usuario']); exit;
+            echo json_encode(['ok' => false, 'msg' => 'Ese correo ya está registrado por otro usuario']);
+            exit;
         }
 
         // Si quiere cambiar contraseña, verificar la actual
         $hash_nuevo = null;
         if (!empty($pw_nueva)) {
             if (empty($pw_actual)) {
-                echo json_encode(['ok'=>false,'msg'=>'Ingresa tu contraseña actual para cambiarla']); exit;
+                echo json_encode(['ok' => false, 'msg' => 'Ingresa tu contraseña actual para cambiarla']);
+                exit;
             }
             $stmt2 = $db->prepare("SELECT password FROM usuario WHERE id_usuario=:id");
             $stmt2->execute([':id' => $_SESSION['user_id']]);
             $row = $stmt2->fetch(PDO::FETCH_ASSOC);
             if (!$row || !password_verify($pw_actual, $row['password'])) {
-                echo json_encode(['ok'=>false,'msg'=>'La contraseña actual es incorrecta']); exit;
+                echo json_encode(['ok' => false, 'msg' => 'La contraseña actual es incorrecta']);
+                exit;
             }
             if (strlen($pw_nueva) < 6) {
-                echo json_encode(['ok'=>false,'msg'=>'La nueva contraseña debe tener al menos 6 caracteres']); exit;
+                echo json_encode(['ok' => false, 'msg' => 'La nueva contraseña debe tener al menos 6 caracteres']);
+                exit;
             }
             $hash_nuevo = password_hash($pw_nueva, PASSWORD_BCRYPT);
         }
@@ -125,7 +130,7 @@ switch ($action) {
         if ($hash_nuevo) $sql .= ", password=:p";
         $sql .= " WHERE id_usuario=:id";
 
-        $params = [':n'=>$nombre,':a'=>$apellido,':t'=>$telefono,':e'=>$email,':id'=>$_SESSION['user_id']];
+        $params = [':n' => $nombre, ':a' => $apellido, ':t' => $telefono, ':e' => $email, ':id' => $_SESSION['user_id']];
         if ($hash_nuevo) $params[':p'] = $hash_nuevo;
 
         $stmt3 = $db->prepare($sql);
@@ -134,13 +139,13 @@ switch ($action) {
             $_SESSION['user_nombre']   = $nombre;
             $_SESSION['user_apellido'] = $apellido;
             $_SESSION['user_email']    = $email;
-            echo json_encode(['ok'=>true,'msg'=>'Perfil actualizado correctamente']);
+            echo json_encode(['ok' => true, 'msg' => 'Perfil actualizado correctamente']);
         } else {
-            echo json_encode(['ok'=>false,'msg'=>'Error al actualizar el perfil']);
+            echo json_encode(['ok' => false, 'msg' => 'Error al actualizar el perfil']);
         }
         exit;
 
-    // Mis devoluciones
+        // Mis devoluciones
     case 'misDevoluciones':
         $stmt = $db->prepare(
             "SELECT d.id_devolucion, d.fecha, d.motivo, d.total_devolucion, v.id_venta

@@ -34,17 +34,71 @@ header("Expires: 0");
 echo "\xEF\xBB\xBF";
 ?>
 <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+
 <head>
     <meta charset="utf-8">
     <style>
-        table { border-collapse: collapse; font-family: 'Outfit', 'Segoe UI', Arial, sans-serif; font-size: 12px; }
-        .main-title { font-size: 24px; font-weight: bold; color: #0f172a; height: 60px; vertical-align: middle; border-bottom: 3px solid #2563eb; }
-        .info-text { font-size: 12px; color: #64748b; height: 30px; vertical-align: top; }
-        .section-title { font-size: 16px; font-weight: bold; color: #2563eb; height: 50px; vertical-align: bottom; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; }
-        .th-header { background-color: #f8fafc; color: #64748b; font-weight: bold; border-bottom: 1px solid #cbd5e1; height: 40px; text-align: left; padding-left: 10px; text-transform: uppercase; font-size: 11px; }
-        .td-data { border-bottom: 1px solid #f1f5f9; height: 35px; color: #334155; padding-left: 10px; vertical-align: middle; }
-        .td-bold { font-weight: bold; color: #0f172a; }
-        .td-red { color: #dc2626; font-weight: bold; }
+        table {
+            border-collapse: collapse;
+            font-family: 'Outfit', 'Segoe UI', Arial, sans-serif;
+            font-size: 12px;
+        }
+
+        .main-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0f172a;
+            height: 60px;
+            vertical-align: middle;
+            border-bottom: 3px solid #2563eb;
+        }
+
+        .info-text {
+            font-size: 12px;
+            color: #64748b;
+            height: 30px;
+            vertical-align: top;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2563eb;
+            height: 50px;
+            vertical-align: bottom;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .th-header {
+            background-color: #f8fafc;
+            color: #64748b;
+            font-weight: bold;
+            border-bottom: 1px solid #cbd5e1;
+            height: 40px;
+            text-align: left;
+            padding-left: 10px;
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+
+        .td-data {
+            border-bottom: 1px solid #f1f5f9;
+            height: 35px;
+            color: #334155;
+            padding-left: 10px;
+            vertical-align: middle;
+        }
+
+        .td-bold {
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        .td-red {
+            color: #dc2626;
+            font-weight: bold;
+        }
     </style>
     <!--[if gte mso 9]>
     <xml>
@@ -59,15 +113,15 @@ echo "\xEF\xBB\xBF";
           <x:FitHeight>99</x:FitHeight>
           <x:ValidPrinterInfo/>
           <x:PaperSizeIndex>9</x:PaperSizeIndex> <!-- A4 -->
-          <x:HorizontalResolution>600</x:HorizontalResolution>
-          <x:VerticalResolution>600</x:VerticalResolution>
-         </x:Print>
-         <x:Selected/>
-         <x:DoNotDisplayGridlines/>
-        </x:WorksheetOptions>
-       </x:ExcelWorksheet>
-      </x:ExcelWorksheets>
-     </x:ExcelWorkbook>
+    <x:HorizontalResolution>600</x:HorizontalResolution>
+    <x:VerticalResolution>600</x:VerticalResolution>
+    </x:Print>
+    <x:Selected />
+    <x:DoNotDisplayGridlines />
+    </x:WorksheetOptions>
+    </x:ExcelWorksheet>
+    </x:ExcelWorksheets>
+    </x:ExcelWorkbook>
     </xml>
     <![endif]-->
 </head>

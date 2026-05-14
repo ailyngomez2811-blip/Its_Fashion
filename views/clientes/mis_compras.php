@@ -48,36 +48,131 @@ $totalGastado = array_sum(array_column($compras, 'total'));
         }
     </script>
     <style>
-        .sidebar-item { transition: all 0.3s ease; }
-        .sidebar-item:hover { background-color: rgba(255,255,255,0.05); transform: translateX(4px); }
-        .sidebar-item.active { background-color: rgba(37,99,235,0.15); color: #60a5fa; border-right: 3px solid #2563eb; }
+        .sidebar-item {
+            transition: all 0.3s ease;
+        }
 
-        .glass-header { background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(226,232,240,0.8); }
+        .sidebar-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateX(4px);
+        }
 
-        .trow:hover { background: #f8fafc; }
+        .sidebar-item.active {
+            background-color: rgba(37, 99, 235, 0.15);
+            color: #60a5fa;
+            border-right: 3px solid #2563eb;
+        }
 
-        .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
 
-        .stat-card { transition: all 0.3s ease; background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); }
-        .stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(15,23,42,0.06); background: white; }
+        .trow:hover {
+            background: #f8fafc;
+        }
 
-        .gradient-accent { background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%); }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
 
-        .modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,.5); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 999; padding: 16px; }
-        .modal-box { background: white; border-radius: 1.5rem; box-shadow: 0 25px 60px rgba(0,0,0,.15); width: 100%; max-width: 600px; max-height: 94vh; display: flex; flex-direction: column; }
+        .stat-card {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
 
-        @keyframes scaleUp { from { opacity: 0; transform: scale(.97) } to { opacity: 1; transform: scale(1) } }
-        .scale-up { animation: scaleUp .3s ease-out; }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+            background: white;
+        }
 
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .gradient-accent {
+            background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, .5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 16px;
+        }
+
+        .modal-box {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, .15);
+            width: 100%;
+            max-width: 600px;
+            max-height: 94vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes scaleUp {
+            from {
+                opacity: 0;
+                transform: scale(.97)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        .scale-up {
+            animation: scaleUp .3s ease-out;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
     </style>
 </head>
+
 <body class="bg-brand-light text-brand-dark antialiased">
 
     <!-- SIDEBAR -->
@@ -364,8 +459,14 @@ $totalGastado = array_sum(array_column($compras, 'total'));
             const t = document.getElementById('toast'),
                 i = document.getElementById('toast-icon'),
                 s = document.getElementById('toast-text');
-            const colors = {success: '#10b981', error: '#ef4444'},
-                icons = {success: 'fa-check-circle', error: 'fa-times-circle'};
+            const colors = {
+                    success: '#10b981',
+                    error: '#ef4444'
+                },
+                icons = {
+                    success: 'fa-check-circle',
+                    error: 'fa-times-circle'
+                };
             t.style.borderLeftColor = colors[type];
             i.className = `fas ${icons[type]} mt-0.5 flex-shrink-0`;
             i.style.color = colors[type];

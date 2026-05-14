@@ -293,9 +293,16 @@ $sinStock = count(array_filter($productos, fn($p) => $p['stock'] == 0));
                             <?php else: ?>
                                 <?php foreach ($historial as $h):
                                     $tipo = $h['tipo_movimiento'];
-                                    if ($tipo === 'Entrada')     { $colorMov = 'emerald'; $signo = '+'; }
-                                    elseif ($tipo === 'Salida')  { $colorMov = 'red';     $signo = '-'; }
-                                    else                         { $colorMov = 'amber';   $signo = '~'; }
+                                    if ($tipo === 'Entrada') {
+                                        $colorMov = 'emerald';
+                                        $signo = '+';
+                                    } elseif ($tipo === 'Salida') {
+                                        $colorMov = 'red';
+                                        $signo = '-';
+                                    } else {
+                                        $colorMov = 'amber';
+                                        $signo = '~';
+                                    }
                                     $cant = (int)($h['cantidad_movimiento'] ?? 0);
                                 ?>
                                     <tr class="trow" data-search="<?= strtolower("{$h['nombre']} {$h['talla']} {$h['color']} {$h['tipo_movimiento']}") ?>">

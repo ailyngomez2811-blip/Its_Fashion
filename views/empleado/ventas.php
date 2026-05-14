@@ -189,7 +189,7 @@ $cajaAbierta = $ventaM->cajaAbierta();
             <span class="font-serif text-xl font-bold tracking-wide">Its <span class="text-brand-accent">Fashion</span></span>
         </div>
 
-                <!-- Navigation -->
+        <!-- Navigation -->
         <div class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
             <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider px-4 mb-2">Principal</p>
             <a href="dashboard_empleado.php" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:text-white">

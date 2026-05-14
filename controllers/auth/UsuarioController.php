@@ -68,7 +68,7 @@ switch ($action) {
         ];
         require_once __DIR__ . '/../../models/Usuario.php';
         $m = new Usuario($db);
-        
+
         if ($m->existeDuplicado($datos['username'], $datos['email'])) {
             $_SESSION['toast'] = ['type' => 'error', 'text' => 'El username o email ya existen.'];
             header("Location: ../../views/admin/usuarios.php");

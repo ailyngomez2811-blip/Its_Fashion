@@ -24,7 +24,6 @@
                             dark: '#0f172a',
                             light: '#f8fafc',
                             accent: '#2563eb',
-                            /* blue-600 */
                             muted: '#64748b'
                         }
                     }

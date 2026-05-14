@@ -5,6 +5,7 @@ unset($_SESSION['alert']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,7 @@ unset($_SESSION['alert']);
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="icon" href="../../img/icono head .png" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -27,7 +28,8 @@ unset($_SESSION['alert']);
                         brand: {
                             dark: '#0f172a',
                             light: '#f8fafc',
-                            accent: '#2563eb', /* blue-600 */
+                            accent: '#2563eb',
+                            /* blue-600 */
                             muted: '#64748b'
                         }
                     }
@@ -51,7 +53,7 @@ unset($_SESSION['alert']);
             <!-- Using a different high-fashion image for registration to give variety -->
             <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Boutique Shopping">
             <div class="absolute inset-0 hero-overlay"></div>
-            
+
             <div class="relative z-10 p-12">
                 <a href="../../../public/index.php" class="inline-flex items-center gap-3 hover:opacity-80 transition-opacity">
                     <img src="../../img/logo en blanco.png" alt="Its Fashion Logo" class="w-12 h-auto object-contain">
@@ -235,4 +237,5 @@ unset($_SESSION['alert']);
         });
     </script>
 </body>
+
 </html>

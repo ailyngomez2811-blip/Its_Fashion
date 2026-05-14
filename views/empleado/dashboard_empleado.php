@@ -133,26 +133,26 @@ $devPendientes = $devM->pendientes();
                 <span class="font-serif text-xl font-bold tracking-wide">Its <span class="text-brand-accent">Fashion</span></span>
             </div>
 
-                    <!-- Navigation -->
-        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
-            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider px-4 mb-2">Principal</p>
-            <a href="dashboard_empleado.php" class="sidebar-item active flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-white hover:text-white">
-                <i class="fas fa-th-large w-5 text-center"></i> Dashboard
-            </a>
+            <!-- Navigation -->
+            <div class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
+                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider px-4 mb-2">Principal</p>
+                <a href="dashboard_empleado.php" class="sidebar-item active flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-white hover:text-white">
+                    <i class="fas fa-th-large w-5 text-center"></i> Dashboard
+                </a>
 
-            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider px-4 mt-6 mb-2">Operaciones</p>
-            <a href="ventas.php" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:text-white">
-                <i class="fas fa-shopping-cart w-5 text-center"></i> Ventas
-            </a>
-            <a href="inventario.php" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:text-white">
-                <i class="fas fa-warehouse w-5 text-center"></i> Inventario
-            </a>
-            <a href="caja.php" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:text-white">
-                <i class="fas fa-cash-register w-5 text-center"></i> Caja
-            </a>
-        </div>
+                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider px-4 mt-6 mb-2">Operaciones</p>
+                <a href="ventas.php" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:text-white">
+                    <i class="fas fa-shopping-cart w-5 text-center"></i> Ventas
+                </a>
+                <a href="inventario.php" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:text-white">
+                    <i class="fas fa-warehouse w-5 text-center"></i> Inventario
+                </a>
+                <a href="caja.php" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:text-white">
+                    <i class="fas fa-cash-register w-5 text-center"></i> Caja
+                </a>
+            </div>
 
-        <!-- User info -->
+            <!-- User info -->
             <div class="p-4 border-t border-gray-800">
                 <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
                     <div class="w-10 h-10 rounded-full bg-brand-accent flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-blue-500/30 flex-shrink-0">

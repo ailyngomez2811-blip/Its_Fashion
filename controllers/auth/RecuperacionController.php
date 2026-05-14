@@ -17,16 +17,16 @@ switch ($action) {
         }
 
         $token = bin2hex(random_bytes(32));
-        
+
         if ($usuario->guardarTokenRecuperacion($email, $token)) {
             // Generar enlace simulado
             $enlace = "http://" . $_SERVER['HTTP_HOST'] . "/its%20fashion%20-%20copia/views/auth/reset_password.php?token=" . $token;
-            
+
             // Para el modo de pruebas local y preparativo API: exponemos el enlace para flujo funcional:
             $_SESSION['test_link'] = $enlace;
             // TODO: Integrar API de terceros aquí en un futuro
         }
-        
+
         $_SESSION['alert'] = ['icon' => 'success', 'title' => 'Simulación exitosa', 'text' => 'Si tu correo existe en el sistema, habrás recibido un enlace (ver simulador).'];
         header("Location: ../../views/auth/recuperar_password.php");
         exit;
@@ -61,7 +61,7 @@ switch ($action) {
                 exit;
             }
         }
-        
+
         $_SESSION['alert'] = ['icon' => 'error', 'title' => 'Enlace no válido', 'text' => 'El enlace ya caducó o es inválido. Por favor, solicita uno nuevo.'];
         header("Location: ../../views/auth/recuperar_password.php");
         exit;

@@ -1,8 +1,10 @@
 <?php
-class Inventario {
+class Inventario
+{
     private $conn;
 
-    public function __construct($db) {
+    public function __construct($db)
+    {
         $this->conn = $db;
     }
 
@@ -10,7 +12,8 @@ class Inventario {
      * Registra un nuevo movimiento en el historial del kardex.
      * $cantidad = unidades que se movieron (positivo siempre, el tipo indica la dirección).
      */
-    public function registrarMovimiento($id_producto, $tipo_movimiento, $stock_resultante, $cantidad = null) {
+    public function registrarMovimiento($id_producto, $tipo_movimiento, $stock_resultante, $cantidad = null)
+    {
         // Si no se pasa cantidad, intentamos calcularla desde el stock anterior
         if ($cantidad === null) {
             $prev = $this->conn->prepare("SELECT stock_disponible FROM inventario WHERE id_producto = :id ORDER BY id_inventario DESC LIMIT 1");
@@ -26,7 +29,7 @@ class Inventario {
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':stock',      $stock_resultante,  PDO::PARAM_INT);
         $stmt->bindValue(':tipo',       $tipo_movimiento,   PDO::PARAM_STR);
-        $stmt->bindValue(':id_producto',$id_producto,       PDO::PARAM_INT);
+        $stmt->bindValue(':id_producto', $id_producto,       PDO::PARAM_INT);
         $stmt->bindValue(':cantidad',   (int)$cantidad,     PDO::PARAM_INT);
         return $stmt->execute();
     }
@@ -34,7 +37,8 @@ class Inventario {
     /**
      * Obtiene todo el historial de kardex ordenado por los más recientes.
      */
-    public function listarHistorial($limite = 200) {
+    public function listarHistorial($limite = 200)
+    {
         $sql = "SELECT i.id_inventario, i.fecha_registro, i.stock_disponible,
                        i.tipo_movimiento, i.id_producto,
                        COALESCE(i.cantidad, 0) AS cantidad_movimiento,

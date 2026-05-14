@@ -29,6 +29,7 @@ $pendientesCount = count(array_filter($devoluciones, fn($d) => $d['estado'] === 
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -59,30 +60,92 @@ $pendientesCount = count(array_filter($devoluciones, fn($d) => $d['estado'] === 
         }
     </script>
     <style>
-        .sidebar-item { transition: all 0.3s ease; }
-        .sidebar-item:hover { background-color: rgba(255,255,255,0.05); transform: translateX(4px); }
-        .sidebar-item.active { background-color: rgba(37,99,235,0.15); color: #60a5fa; border-right: 3px solid #2563eb; }
+        .sidebar-item {
+            transition: all 0.3s ease;
+        }
 
-        .glass-header { background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(226,232,240,0.8); }
+        .sidebar-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateX(4px);
+        }
 
-        .trow:hover { background: #f8fafc; }
+        .sidebar-item.active {
+            background-color: rgba(37, 99, 235, 0.15);
+            color: #60a5fa;
+            border-right: 3px solid #2563eb;
+        }
 
-        .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
 
-        .stat-card { transition: all 0.3s ease; background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); }
-        .stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(15,23,42,0.06); background: white; }
+        .trow:hover {
+            background: #f8fafc;
+        }
 
-        .gradient-accent { background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%); }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
 
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .stat-card {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+            background: white;
+        }
+
+        .gradient-accent {
+            background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
     </style>
 </head>
+
 <body class="bg-brand-light text-brand-dark antialiased">
 
     <!-- SIDEBAR -->
@@ -171,10 +234,10 @@ $pendientesCount = count(array_filter($devoluciones, fn($d) => $d['estado'] === 
             </div>
 
             <?php if ($pendientesCount > 0): ?>
-            <div class="mb-4 flex items-center gap-3 p-4 bg-amber-50 border border-amber-200 rounded-2xl text-sm text-amber-800">
-                <i class="fas fa-info-circle text-amber-500 flex-shrink-0"></i>
-                Tienes <?= $pendientesCount ?> solicitud<?= $pendientesCount > 1 ? 'es' : '' ?> pendiente<?= $pendientesCount > 1 ? 's' : '' ?> de revisión por el administrador.
-            </div>
+                <div class="mb-4 flex items-center gap-3 p-4 bg-amber-50 border border-amber-200 rounded-2xl text-sm text-amber-800">
+                    <i class="fas fa-info-circle text-amber-500 flex-shrink-0"></i>
+                    Tienes <?= $pendientesCount ?> solicitud<?= $pendientesCount > 1 ? 'es' : '' ?> pendiente<?= $pendientesCount > 1 ? 's' : '' ?> de revisión por el administrador.
+                </div>
             <?php endif; ?>
 
             <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden" style="box-shadow:0 2px 16px rgba(0,0,0,.04);">
@@ -240,4 +303,5 @@ $pendientesCount = count(array_filter($devoluciones, fn($d) => $d['estado'] === 
         </main>
     </div>
 </body>
+
 </html>

@@ -19,12 +19,16 @@ switch ($action) {
 
     case 'aprobar':
         $id = (int)($_POST['id'] ?? 0);
-        if (!$id) { echo json_encode(['ok' => false, 'msg' => 'ID inválido']); exit; }
+        if (!$id) {
+            echo json_encode(['ok' => false, 'msg' => 'ID inválido']);
+            exit;
+        }
         try {
             $ok = $devM->aceptar($id, $_SESSION['user_id']);
-            echo json_encode($ok
-                ? ['ok' => true,  'msg' => 'Devolución aceptada correctamente']
-                : ['ok' => false, 'msg' => 'No se pudo aceptar (ya fue procesada o no existe)']
+            echo json_encode(
+                $ok
+                    ? ['ok' => true,  'msg' => 'Devolución aceptada correctamente']
+                    : ['ok' => false, 'msg' => 'No se pudo aceptar (ya fue procesada o no existe)']
             );
         } catch (Exception $e) {
             echo json_encode(['ok' => false, 'msg' => $e->getMessage()]);
@@ -33,11 +37,15 @@ switch ($action) {
 
     case 'rechazar':
         $id = (int)($_POST['id'] ?? 0);
-        if (!$id) { echo json_encode(['ok' => false, 'msg' => 'ID inválido']); exit; }
+        if (!$id) {
+            echo json_encode(['ok' => false, 'msg' => 'ID inválido']);
+            exit;
+        }
         $ok = $devM->rechazar($id, $_SESSION['user_id']);
-        echo json_encode($ok
-            ? ['ok' => true,  'msg' => 'Devolución rechazada']
-            : ['ok' => false, 'msg' => 'No se pudo rechazar (ya fue procesada o no existe)']
+        echo json_encode(
+            $ok
+                ? ['ok' => true,  'msg' => 'Devolución rechazada']
+                : ['ok' => false, 'msg' => 'No se pudo rechazar (ya fue procesada o no existe)']
         );
         exit;
 

@@ -94,7 +94,7 @@ switch ($action) {
 
         $ok = $prod->actualizar($id, $d);
         if ($ok && $diff !== 0) {
-            $tipo = $diff > 0 ? 'Entrada' : 'Salida'; 
+            $tipo = $diff > 0 ? 'Entrada' : 'Salida';
             try {
                 $invM->registrarMovimiento($id, $tipo, $d['stock']);
             } catch (Exception $e) {

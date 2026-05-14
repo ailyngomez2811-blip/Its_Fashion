@@ -53,7 +53,9 @@ $kpi       = $prodM->totales();
         }
     </script>
     <style>
-        .gradient-accent { background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%); }
+        .gradient-accent {
+            background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+        }
 
         .sidebar-item {
             transition: all 0.3s ease;

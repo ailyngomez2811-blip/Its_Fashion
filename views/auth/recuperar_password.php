@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="../../img/icono head .png" type="image/png">
-    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; } .gradient-soft { background: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%); } .gradient-accent { background: linear-gradient(135deg, #3b82f6 0%, #3b82f6 100%); } .custom-shadow { box-shadow: 0 20px 50px rgba(59, 130, 246, 0.15); } .fade-in { animation: fadeIn 0.5s ease-out; } @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }</style>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .gradient-soft {
+            background: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%);
+        }
+
+        .gradient-accent {
+            background: linear-gradient(135deg, #3b82f6 0%, #3b82f6 100%);
+        }
+
+        .custom-shadow {
+            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.15);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
+
 <body class="gradient-soft min-h-screen flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden custom-shadow p-8 md:p-12 fade-in">
         <div class="text-center mb-8">
@@ -22,10 +56,10 @@
         </div>
 
         <?php if (isset($_SESSION['alert'])): ?>
-            <?php 
-                $alert = $_SESSION['alert']; 
-                $bg = $alert['icon'] === 'success' ? 'bg-green-50 border-green-500 text-green-700' : 'bg-red-50 border-red-500 text-red-700';
-                $fa = $alert['icon'] === 'success' ? 'fa-check-circle text-green-500' : 'fa-exclamation-circle text-red-500';
+            <?php
+            $alert = $_SESSION['alert'];
+            $bg = $alert['icon'] === 'success' ? 'bg-green-50 border-green-500 text-green-700' : 'bg-red-50 border-red-500 text-red-700';
+            $fa = $alert['icon'] === 'success' ? 'fa-check-circle text-green-500' : 'fa-exclamation-circle text-red-500';
             ?>
             <div class="mb-6 p-4 <?= $bg ?> border-l-4 rounded-lg text-sm flex items-start gap-3">
                 <i class="fas <?= $fa ?> mt-0.5 flex-shrink-0"></i>
@@ -68,4 +102,5 @@
         </div>
     </div>
 </body>
+
 </html>

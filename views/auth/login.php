@@ -3,6 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="icon" href="../../img/icono head .png" type="image/png">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -25,7 +26,8 @@ session_start();
                         brand: {
                             dark: '#0f172a',
                             light: '#f8fafc',
-                            accent: '#2563eb', /* blue-600 */
+                            accent: '#2563eb',
+                            /* blue-600 */
                             muted: '#64748b'
                         }
                     }
@@ -39,14 +41,31 @@ session_start();
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .fade-in {
@@ -67,7 +86,7 @@ session_start();
         <div class="md:w-5/12 relative hidden md:flex flex-col justify-between overflow-hidden">
             <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Boutique">
             <div class="absolute inset-0 hero-overlay"></div>
-            
+
             <div class="relative z-10 p-12">
                 <a href="../../../public/index.php" class="inline-flex items-center gap-3 hover:opacity-80 transition-opacity">
                     <img src="../../img/logo en blanco.png" alt="Its Fashion Logo" class="w-12 h-auto object-contain">
@@ -333,4 +352,5 @@ session_start();
         ?>
     </script>
 </body>
+
 </html>
