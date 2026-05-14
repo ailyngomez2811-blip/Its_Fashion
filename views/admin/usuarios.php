@@ -390,7 +390,7 @@ unset($_SESSION['toast']);
                                         </td>
                                         <td class="px-6 py-4 border-b border-slate-50 text-xs text-slate-500"><?= date('Y-m-d', strtotime($u['fecha_registro'])) ?></td>
                                         <td class="px-6 py-4 border-b border-slate-50">
-                                            <button onclick='openModal("edit", <?= $dataJson ?>)'
+                                            <button onclick='openModal("edit", <?= htmlspecialchars($dataJson, ENT_QUOTES, "UTF-8") ?>)'
                                                 class="w-8 h-8 bg-blue-50 hover:bg-blue-100 rounded-lg flex items-center justify-center text-blue-500 transition">
                                                 <i class="fas fa-edit text-xs"></i>
                                             </button>
