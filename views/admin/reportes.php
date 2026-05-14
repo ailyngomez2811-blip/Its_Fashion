@@ -712,10 +712,10 @@ $kpi_compras = $stmt8->fetch(PDO::FETCH_ASSOC);
       <div class="p-7 overflow-y-auto">
         <div class="mb-5">
           <p class="text-sm font-semibold text-slate-700 mb-3">Tipo de reporte</p>
-          <div class="grid grid-cols-2 gap-2">
+          <div class="grid grid-cols-2 gap-2" id="report-types-container">
             <?php foreach (['Ventas', 'Inventario', 'Productos más vendidos', 'Devoluciones'] as $r): ?>
               <label class="flex items-center gap-3 p-3 rounded-xl border-2 border-slate-200 hover:border-blue-300 cursor-pointer transition has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
-                <input type="checkbox" class="accent-blue-600">
+                <input type="checkbox" value="<?= str_replace(' ', '_', $r) ?>" class="accent-blue-600 report-cb">
                 <span class="text-sm font-medium text-slate-700"><?= $r ?></span>
               </label>
             <?php endforeach; ?>
@@ -764,7 +764,19 @@ $kpi_compras = $stmt8->fetch(PDO::FETCH_ASSOC);
     });
 
     function exportar(fmt) {
-      showToast(`Reporte exportado en formato ${fmt}.`);
+      if (fmt === 'PDF') {
+        const checkboxes = document.querySelectorAll('.report-cb:checked');
+        let params = [];
+        checkboxes.forEach(cb => {
+          params.push(encodeURIComponent(cb.value) + '=1');
+        });
+        
+        const queryString = params.length > 0 ? '?' + params.join('&') : '';
+        window.open(`../../controllers/admin/ExportarPDFController.php${queryString}`, '_blank');
+        showToast('Generando PDF...');
+      } else {
+        showToast(`Reporte exportado en formato ${fmt}.`);
+      }
       closeExp();
     }
 
