@@ -64,11 +64,12 @@ class Compra
                 $stmt3->bindValue(':id',  $item['id_producto'], PDO::PARAM_INT);
                 $stmt3->execute();
 
-                // Movimiento inventario
+                // Movimiento inventario: cantidad exacta de la compra
                 $stmt4 = $this->conn->prepare(
-                    "INSERT INTO inventario (fecha_registro, stock_disponible, tipo_movimiento, id_producto)
-                     SELECT NOW(), stock, 'Entrada', id_producto FROM productos WHERE id_producto = :id"
+                    "INSERT INTO inventario (fecha_registro, stock_disponible, tipo_movimiento, id_producto, cantidad)
+                     SELECT NOW(), stock, 'Entrada', id_producto, :qty FROM productos WHERE id_producto = :id"
                 );
+                $stmt4->bindValue(':qty', $item['cantidad'], PDO::PARAM_INT);
                 $stmt4->bindValue(':id', $item['id_producto'], PDO::PARAM_INT);
                 $stmt4->execute();
             }

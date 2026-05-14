@@ -277,7 +277,7 @@ $sinStock = count(array_filter($productos, fn($p) => $p['stock'] == 0));
                     <table class="w-full">
                         <thead>
                             <tr>
-                                <?php foreach (['Fecha', 'Producto', 'Talla / Color', 'Movimiento', 'Stock Disp.'] as $h): ?>
+                                <?php foreach (['Fecha', 'Producto', 'Talla / Color', 'Movimiento', 'Cantidad', 'Stock Disp.'] as $h): ?>
                                     <th class="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide bg-slate-50 border-b border-slate-100"><?= $h ?></th>
                                 <?php endforeach; ?>
                             </tr>
@@ -285,7 +285,7 @@ $sinStock = count(array_filter($productos, fn($p) => $p['stock'] == 0));
                         <tbody id="table-body">
                             <?php if (empty($historial)): ?>
                                 <tr>
-                                    <td colspan="5" class="px-6 py-16 text-center text-slate-400">
+                                    <td colspan="6" class="px-6 py-16 text-center text-slate-400">
                                         <i class="fas fa-history text-4xl mb-3 block opacity-20"></i>
                                         <p class="text-sm">No hay movimientos registrados en el Kardex</p>
                                     </td>
@@ -293,9 +293,10 @@ $sinStock = count(array_filter($productos, fn($p) => $p['stock'] == 0));
                             <?php else: ?>
                                 <?php foreach ($historial as $h):
                                     $tipo = $h['tipo_movimiento'];
-                                    if ($tipo === 'Entrada')     $colorMov = 'emerald';
-                                    elseif ($tipo === 'Salida')  $colorMov = 'red';
-                                    else                         $colorMov = 'amber';
+                                    if ($tipo === 'Entrada')     { $colorMov = 'emerald'; $signo = '+'; }
+                                    elseif ($tipo === 'Salida')  { $colorMov = 'red';     $signo = '-'; }
+                                    else                         { $colorMov = 'amber';   $signo = '~'; }
+                                    $cant = (int)($h['cantidad_movimiento'] ?? 0);
                                 ?>
                                     <tr class="trow" data-search="<?= strtolower("{$h['nombre']} {$h['talla']} {$h['color']} {$h['tipo_movimiento']}") ?>">
                                         <td class="px-6 py-4 border-b border-slate-50">
@@ -313,6 +314,10 @@ $sinStock = count(array_filter($productos, fn($p) => $p['stock'] == 0));
                                             <div class="inline-flex items-center gap-1.5 text-xs font-semibold text-<?= $colorMov ?>-600 bg-<?= $colorMov ?>-50 px-3 py-1.5 rounded border border-<?= $colorMov ?>-200">
                                                 <i class="fas fa-<?= $tipo === 'Entrada' ? 'level-down-alt' : ($tipo === 'Salida' ? 'level-up-alt' : 'exchange-alt') ?>"></i> <?= $tipo ?>
                                             </div>
+                                        </td>
+                                        <td class="px-6 py-4 border-b border-slate-50">
+                                            <span class="font-bold text-<?= $colorMov ?>-600 text-base"><?= $signo . $cant ?></span>
+                                            <span class="text-xs text-slate-400 ml-1">uds</span>
                                         </td>
                                         <td class="px-6 py-4 border-b border-slate-50">
                                             <span class="text-lg font-bold text-slate-800"><?= $h['stock_disponible'] ?></span>

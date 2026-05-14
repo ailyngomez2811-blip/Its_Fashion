@@ -101,10 +101,11 @@ class Devolucion
                 $this->conn->prepare("UPDATE productos SET stock = stock + :qty WHERE id_producto = :id")
                     ->execute([':qty' => $item['cantidad'], ':id' => $item['id_producto']]);
 
+                // Movimiento inventario: cantidad exacta devuelta
                 $this->conn->prepare(
-                    "INSERT INTO inventario (fecha_registro, stock_disponible, tipo_movimiento, id_producto)
-                     SELECT NOW(), stock, 'Entrada', id_producto FROM productos WHERE id_producto = :id"
-                )->execute([':id' => $item['id_producto']]);
+                    "INSERT INTO inventario (fecha_registro, stock_disponible, tipo_movimiento, id_producto, cantidad)
+                     SELECT NOW(), stock, 'Entrada', id_producto, :qty FROM productos WHERE id_producto = :id"
+                )->execute([':qty' => $item['cantidad'], ':id' => $item['id_producto']]);
             }
 
             // Egreso en caja independientemente del método de pago
